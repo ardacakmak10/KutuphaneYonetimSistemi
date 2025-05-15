@@ -1,0 +1,105 @@
+﻿<Window x:Class="KutuphaneYonetimSistemi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Kütüphane Yönetim Sistemi" 
+        Height="650" 
+        Width="1100" 
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource AppBackground}"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#6A11CB" Offset="0"/>
+                        <GradientStop Color="#2575FC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0 10"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                CornerRadius="10"
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"
+                                              TextBlock.FontWeight="SemiBold"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="0.6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sol Menü -->
+        <Border Grid.Column="0" 
+                Background="{DynamicResource CardBackground}" 
+                BorderThickness="1 0 1 0" 
+                BorderBrush="#E0E0E0"
+                CornerRadius="10 0 0 10">
+            <StackPanel Margin="20">
+                <TextBlock Text="Kütüphane" 
+                           Foreground="{DynamicResource AppForeground}" 
+                           FontSize="24" 
+                           FontWeight="SemiBold" 
+                           Margin="0 0 0 30"
+                           HorizontalAlignment="Center"/>
+
+                <Button Content="Kitap Yönetimi" 
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="BtnKitapYonetimi_Click"/>
+
+                <Button Content="İşlem Geçmişi" 
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="BtnIslemGecmisi_Click"/>
+
+                <Button Content="Rezervasyon Takibi" 
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="BtnRezervasyon_Click"/>
+
+                <Button Content="Kitap Arama &amp; Sıralama" 
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="BtnKitapAgaci_Click"/>
+                <Button Content="Hakkında" 
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="BtnHakkinda_Click"/>
+                <Button x:Name="btnTemaDegistir"
+        Content="🌞 Koyu Tema"
+        Style="{StaticResource ModernButtonStyle}"
+        Click="BtnTema_Click"/>
+
+            </StackPanel>
+        </Border>
+
+        <!-- İçerik Alanı -->
+        <Border Grid.Column="1" 
+                Background="{DynamicResource CardBackground}" 
+                CornerRadius="0 10 10 0"
+                Margin="0 0 20 0">
+            <Frame x:Name="MainFrame" 
+                   NavigationUIVisibility="Hidden" 
+                   Background="Transparent"/>
+        </Border>
+    </Grid>
+</Window>
